@@ -1,0 +1,10 @@
+node_modules/
+.env
+dist/
+.DS_Storegit 
+.agents/
+.build/
+.codex/
+.cursor/
+.derivedData/
+.env.local
