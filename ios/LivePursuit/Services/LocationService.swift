@@ -8,6 +8,7 @@ final class LocationService: NSObject, ObservableObject {
 
     private let manager: CLLocationManager
     private var isSimulating = false
+    private var shouldStartUpdatesAfterAuthorization = false
 
     override init() {
         manager = CLLocationManager()
@@ -21,14 +22,35 @@ final class LocationService: NSObject, ObservableObject {
     }
 
     func requestPermission() {
-        manager.requestWhenInUseAuthorization()
+        switch authorizationStatus {
+        case .notDetermined:
+            manager.requestWhenInUseAuthorization()
+        case .authorizedAlways, .authorizedWhenInUse:
+            break
+        case .denied, .restricted:
+            break
+        @unknown default:
+            break
+        }
     }
 
     func startUpdates() {
-        manager.startUpdatingLocation()
+        switch authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            shouldStartUpdatesAfterAuthorization = false
+            manager.startUpdatingLocation()
+        case .notDetermined:
+            shouldStartUpdatesAfterAuthorization = true
+            manager.requestWhenInUseAuthorization()
+        case .denied, .restricted:
+            shouldStartUpdatesAfterAuthorization = false
+        @unknown default:
+            shouldStartUpdatesAfterAuthorization = false
+        }
     }
 
     func stopUpdates() {
+        shouldStartUpdatesAfterAuthorization = false
         manager.stopUpdatingLocation()
     }
 
@@ -46,6 +68,11 @@ final class LocationService: NSObject, ObservableObject {
 extension LocationService: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         authorizationStatus = manager.authorizationStatus
+        if shouldStartUpdatesAfterAuthorization &&
+            (manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways) {
+            shouldStartUpdatesAfterAuthorization = false
+            manager.startUpdatingLocation()
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

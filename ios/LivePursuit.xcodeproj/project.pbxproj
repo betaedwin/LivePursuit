@@ -17,7 +17,9 @@
 		E1BDE0648B2741DA9CC6318E /* SessionStatusChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163D4811916847598DF00FC2 /* SessionStatusChip.swift */; };
 		334C43377FA841AB8A55DEF4 /* ConsentStatusRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31294A041542ADABD6A665 /* ConsentStatusRow.swift */; };
 		364D4D1D40894F868C7BB798 /* ErrorStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935F23CDCA6645B8BDE6D49E /* ErrorStateView.swift */; };
+		3A7F71108BA64E168D1890E7 /* PhoneContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35D9CA167C5484CBE650E34 /* PhoneContactsService.swift */; };
 		92AF73E36360405FB2CF9034 /* PermissionEducationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AD30F7490D48EE8B9BB0E4 /* PermissionEducationView.swift */; };
+		3F14F327AD994B09947509A4 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45709DF35EE048C58AA47E4F /* Contacts.framework */; };
 		DECCD8F088C84337B4F6DFA7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9EA277D481420688E40719 /* SettingsView.swift */; };
 		4A193D0E892A5BF85792B163 /* BackendClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9977AC113A5D04E32217E /* BackendClient.swift */; };
 		4C2D12C6DB0D140A8DB32123 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF880A3A69594CF9817CA5D /* UserProfile.swift */; };
@@ -54,6 +56,7 @@
 		3FF1D32636BED12F64A5310B /* NavigatorViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigatorViewModel.swift; path = ViewModels/NavigatorViewModel.swift; sourceTree = "<group>"; };
 		4207A2CBFDCF12B872BBD272 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		44396E7C8BB13588AD69E7E6 /* StatusCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StatusCard.swift; path = Views/StatusCard.swift; sourceTree = "<group>"; };
+		45709DF35EE048C58AA47E4F /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = "<group>"; };
 		FA8778AA39D542239C9200B4 /* RouteSummaryCard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RouteSummaryCard.swift; path = Views/RouteSummaryCard.swift; sourceTree = "<group>"; };
 		163D4811916847598DF00FC2 /* SessionStatusChip.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionStatusChip.swift; path = Views/SessionStatusChip.swift; sourceTree = "<group>"; };
 		4D31294A041542ADABD6A665 /* ConsentStatusRow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConsentStatusRow.swift; path = Views/ConsentStatusRow.swift; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 		C18BB85F5FA5EDF0C615274A /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C3A9977AC113A5D04E32217E /* BackendClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BackendClient.swift; path = Services/BackendClient.swift; sourceTree = "<group>"; };
 		C5A00CDF9E7A2CAAF590AE53 /* SessionModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionModels.swift; path = Models/SessionModels.swift; sourceTree = "<group>"; };
+		D35D9CA167C5484CBE650E34 /* PhoneContactsService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PhoneContactsService.swift; path = Services/PhoneContactsService.swift; sourceTree = "<group>"; };
 		D74AF3F6597140913BF1EEBA /* RouteService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RouteService.swift; path = Services/RouteService.swift; sourceTree = "<group>"; };
 		DEF880A3A69594CF9817CA5D /* UserProfile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserProfile.swift; path = Models/UserProfile.swift; sourceTree = "<group>"; };
 		E2F80118F7A535A6865782F3 /* SharingState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharingState.swift; path = Models/SharingState.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 				620A5E6494F70F4A8C72255C /* Foundation.framework in Frameworks */,
 				E3A987C2610609CF95B086CD /* MapKit.framework in Frameworks */,
 				8C69C2E599560386ECC41320 /* CoreLocation.framework in Frameworks */,
+				3F14F327AD994B09947509A4 /* Contacts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +161,7 @@
 				C18BB85F5FA5EDF0C615274A /* ContentView.swift */,
 				C3A9977AC113A5D04E32217E /* BackendClient.swift */,
 				E8D1000C1139ADB50475E6F7 /* DemoData.swift */,
+				D35D9CA167C5484CBE650E34 /* PhoneContactsService.swift */,
 				2694B6D2249F8EAFB9704D8A /* MapKitExtensions.swift */,
 				D74AF3F6597140913BF1EEBA /* RouteService.swift */,
 				4445CE4BD213845AB2AC8AC4 /* AppConfig.swift */,
@@ -217,6 +223,7 @@
 			children = (
 				4DB380DC0C1A3C869605EC89 /* iOS */,
 				7E403CF93FA178655FF75BB4 /* MapKit.framework */,
+				45709DF35EE048C58AA47E4F /* Contacts.framework */,
 				719ED90A905C1425099EA084 /* CoreLocation.framework */,
 				F5B483E24F9E43BA80340D1D /* XCTest.framework */,
 			);
@@ -358,6 +365,7 @@
 				FD427A1C2ABF69551C178FD1 /* SessionModels.swift in Sources */,
 				28F0E89039C09E1ECCEC7A6E /* SharingState.swift in Sources */,
 				AB6696F6696E5E865B331510 /* APIModels.swift in Sources */,
+				3A7F71108BA64E168D1890E7 /* PhoneContactsService.swift in Sources */,
 				B24E1B7A1234567890ABCDEF /* SimulationModels.swift in Sources */,
 				4C2D12C6DB0D140A8DB32123 /* UserProfile.swift in Sources */,
 				DAC23BA8FC222D4EC9573AEF /* Contact.swift in Sources */,
@@ -694,7 +702,7 @@
 				INFOPLIST_FILE = LivePursuit/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIVE_PURSUIT_BACKEND_URL = "https://YOUR-RENDER-SERVICE.onrender.com";
+				LIVE_PURSUIT_BACKEND_URL = "https://livepursuit.onrender.com";
 				LIVE_PURSUIT_CURRENT_USER_ID = "user-1";
 				LIVE_PURSUIT_CURRENT_USER_NAME = You;
 				PRODUCT_BUNDLE_IDENTIFIER = com.livepursuit.app.navigator;
@@ -717,7 +725,7 @@
 				INFOPLIST_FILE = LivePursuit/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIVE_PURSUIT_BACKEND_URL = "https://YOUR-RENDER-SERVICE.onrender.com";
+				LIVE_PURSUIT_BACKEND_URL = "https://livepursuit.onrender.com";
 				LIVE_PURSUIT_CURRENT_USER_ID = "user-2";
 				LIVE_PURSUIT_CURRENT_USER_NAME = Avery;
 				PRODUCT_BUNDLE_IDENTIFIER = com.livepursuit.app.destination;

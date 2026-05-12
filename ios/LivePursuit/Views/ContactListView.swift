@@ -1,7 +1,9 @@
 import SwiftUI
+import UIKit
 
 struct ContactListView: View {
     @StateObject private var viewModel: NavigatorViewModel
+    @StateObject private var phoneContactsViewModel = PhoneContactsViewModel()
     @AppStorage("simModeEnabled") private var simModeEnabled = false
 
     init(viewModel: NavigatorViewModel) {
@@ -26,6 +28,10 @@ struct ContactListView: View {
                             .padding(.vertical, 6)
                         }
                     }
+                }
+
+                Section("Phone Contacts") {
+                    phoneContactsContent
                 }
 
                 Section("Active Location Sharing") {
@@ -64,6 +70,71 @@ struct ContactListView: View {
                 }
             }
             .navigationTitle("Choose a Contact")
+            .onAppear {
+                phoneContactsViewModel.refreshIfAuthorized()
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var phoneContactsContent: some View {
+        switch phoneContactsViewModel.state {
+        case .notDetermined:
+            Button {
+                phoneContactsViewModel.requestAccess()
+            } label: {
+                Label("Use Phone Contacts", systemImage: "person.crop.circle.badge.plus")
+            }
+        case .loading:
+            HStack {
+                ProgressView()
+                Text("Loading contacts")
+                    .foregroundStyle(.secondary)
+            }
+        case .authorized:
+            if phoneContactsViewModel.contacts.isEmpty {
+                Text("No contacts found")
+                    .foregroundStyle(.secondary)
+            } else {
+                ForEach(phoneContactsViewModel.contacts) { phoneContact in
+                    let contact = phoneContactsViewModel.liveDestinationContact(from: phoneContact)
+                    NavigationLink {
+                        NavigatorView(viewModel: viewModel, contact: contact)
+                    } label: {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(phoneContact.displayName)
+                                .font(.headline)
+                            Text("Navigate to \(phoneContact.displayName)")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.vertical, 6)
+                    }
+                }
+            }
+        case .denied, .restricted:
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Contacts access needed")
+                    .font(.headline)
+                Text("Enable Contacts access in Settings to pick a real contact for field testing.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                Button("Open Settings") {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            }
+            .padding(.vertical, 6)
+        case .failed(let message):
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Unable to load contacts")
+                    .font(.headline)
+                Text(message)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.vertical, 6)
         }
     }
 }

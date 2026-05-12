@@ -16,6 +16,12 @@ struct SettingsView: View {
                         .foregroundStyle(.secondary)
                 }
 
+                if locationService.authorizationStatus == .notDetermined {
+                    Button("Request Location Access") {
+                        locationService.requestPermission()
+                    }
+                }
+
                 Button("Open System Settings") {
                     if let url = URL(string: UIApplication.openSettingsURLString) {
                         openURL(url)
